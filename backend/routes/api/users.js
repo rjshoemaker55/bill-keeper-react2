@@ -5,16 +5,32 @@ const bcrypt = require('bcryptjs');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
 
+const auth = require('../../middleware/auth');
 const User = require('../../models/User');
 
-router.get('/', (req, res) => {
-  res.send('Users route.')
+
+// @route   GET api/users
+// @desc    Get all users
+// @access  Private
+router.get('/', auth, async (req, res) => {
+  try {
+    const users = await User.find();
+
+    if (req.user.id !== '5d65d6306c26af1aad0e821d') {
+      return res.status(404).json({ msg: 'Access denied.' });
+    }
+
+    return res.json(users)
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({ msg: 'Server error.' });
+  };
 });
 
 
-// @route POST api/users
-// @desc Register user
-// @access Public
+// @route   POST api/users
+// @desc    Register user
+// @access  Public
 router.post('/', [
   check('name', 'Name is required.')
     .not()
@@ -71,6 +87,6 @@ router.post('/', [
     console.error(err.message);
     res.status(500).send('Server error.');
   }
-})
+});
 
 module.exports = router;
