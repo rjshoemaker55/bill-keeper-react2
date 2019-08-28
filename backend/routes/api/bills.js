@@ -62,6 +62,34 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
+// @route   GET /api/bills/user/:userid
+// @desc    Get bills by user
+// @access  Private
+router.get('/user/:userid', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userid);
+
+    if (!user) {
+      console.log(`User doesn't exist`)
+    }
+
+    if (!user.id === req.user.id) {
+      return res.status(401).json({ msg: 'User not authorized.' });
+    }
+
+    const bills = await Bill.find({ user });
+
+    return res.json(bills);
+  } catch (err) {
+    console.error(err.message);
+
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'User not found.' });
+    }
+    res.status(500).send('Server error.');
+  }
+})
+
 // @route   GET /api/bills/:id
 // @desc    Get bill by id
 // @access  Private
