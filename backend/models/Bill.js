@@ -16,7 +16,8 @@ const BillSchema = new mongoose.Schema({
       },
       duedate: {
         type: Number,
-        required: true
+        required: true,
+        max: [31, 'Must be a real date.']
       },
       automatic: {
         type: Boolean,

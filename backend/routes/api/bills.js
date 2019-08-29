@@ -128,7 +128,46 @@ router.delete('/:id', auth, async (req, res) => {
       return res.status(404).json({ msg: 'Bill not found.' });
     }
     res.status(500).send('Server error.');
-  }
-})
+  };
+});
+
+// @route   PUT /api/bills/:id
+// @desc    Update bill by id
+// @access  Private
+router.put('/:id', auth, async (req, res) => { 
+  try {
+    const bill = await Bill.findById(req.params.id)
+
+    if (bill.user.toString() !== req.user.id) {
+      return res.status(404).json({ msg: 'User not authorized.' });
+    }
+
+    const { 
+      automatic,
+      name,
+      amount,
+      duedate
+    } = req.body;
+
+    await Bill.findByIdAndUpdate(req.params.id, {
+      automatic,
+      name,
+      amount,
+      duedate
+    }, { runValidators: true },
+     (err, doc) => {
+      if (err) {
+        return err
+      }
+      res.json(doc);
+    });
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'Bill not found.' });
+    };
+    return res.status(500).send('Server error.');
+  };
+});
 
 module.exports = router;
