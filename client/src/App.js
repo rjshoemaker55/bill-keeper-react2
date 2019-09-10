@@ -1,38 +1,26 @@
-import React, { Component } from 'react';
-
-import Navi from './components/Nav';
+import React from 'react';
+import logo from './logo.svg';
 import './App.css';
-import fire from './config/fire';
 
-class App extends Component {
-
-  constructor() {
-    super();
-    this.state= {
-      authenticated: false
-    }
-  }
-
-  componentDidMount() {
-    this.authListener();
-  }
-
-  authListener() {
-    fire.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ authenticated: true })
-      } else {
-        this.setState({ authenticated: false })
-      }
-    })
-  }
-  render() {
-    return (
-      <Navi 
-          authenticated={this.state.authenticated}
-      />
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
 }
 
 export default App;
