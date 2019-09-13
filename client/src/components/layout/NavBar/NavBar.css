@@ -1,0 +1,10 @@
+.navbar {
+  background: rgb(221, 104, 103);
+  height: 75px;
+}
+
+#brand {
+  font-weight: bold;
+  font-size: 35px;
+  color: black;
+}

@@ -1,0 +1,13 @@
+.alert {
+  width: 100%;
+  padding: 10 0px 10px 20px;
+  border: 0px;
+  border-radius: 10px;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.alert-danger {
+  background: #FDFD96;
+  color: #262C32;
+}

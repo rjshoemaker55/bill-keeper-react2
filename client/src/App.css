@@ -1,33 +1,55 @@
-.App {
+body {
+  background-color:black;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.main-section {
+  margin-top: 75px;
+}
+
+.main-header {
+  color: rgb(252, 251, 209);
+  font-weight: bold;
+  font-size: 55px
+}
+
+.main-body {
+  background: rgb(121, 209, 237);
+  padding: 35px 20px;
+  font-size: 25px;
+  border-radius: 10px
+
+}
+
+.action-btn {
+  background: rgb(104, 196, 159);
+  color: rgb(38,44,50);
+  width: 150px;
+  display: inline-block;
+  padding: 10px 0px;
   text-align: center;
+  height: 40px;
+  border-radius: 10px;
+  font-weight: bold;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.action-btn + .action-btn {
+  margin-left: 15px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.form-inputs {
+  margin-top: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+a {
+  text-decoration: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/*
+COLOR PALLETE:
+1. Dark Slate Gray: rgb(62, 73, 95)
+2. Sky Blue: rgb(121, 209, 237)
+3. Aquamarine: rgb(104, 196, 159)
+4. Golden Rodyel: rgb(252, 251, 209)
+5. Indian Red: rgb(221, 104, 103)
+*/
