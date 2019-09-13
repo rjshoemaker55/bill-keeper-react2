@@ -8,7 +8,7 @@ import { setAlert } from '../../../actions/alert';
 
 import './Register.css';
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',

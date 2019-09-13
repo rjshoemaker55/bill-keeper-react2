@@ -10,7 +10,7 @@ const initialState = {
   user: null
 };
 
-export default (state = initialState, action) => {
+export default function(state = initialState, action) {
   const { type, payload } = action;
 
   // eslint-disable-next-line default-case
@@ -29,6 +29,8 @@ export default (state = initialState, action) => {
         token: null,
         isAuthenticated: false,
         loading: false
-      };
+       };
+    default:
+       return state;
   }
 }
